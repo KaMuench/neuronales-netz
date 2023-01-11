@@ -3,7 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Neuron implements Input{
+public class Neuron extends Input {
 
     private List<Double> mWeights;
     double mOut;
@@ -58,17 +58,18 @@ public class Neuron implements Input{
         }
     }
 
+
     public void generateOut(List<Input> predecessors) {
         calcSkalar(predecessors);
         mOut = calcSig(mIn);
     }
 
-    public void adjustWeights(List<Input> predecessor, int y, double alpha) {
+    public void adjustWeights(List<Input> predecessor, double alpha , int y) {
         calcDelta(y);
         calcWeight(predecessor, alpha);
     }
 
-    public void adjustWeights(List<Input> predecessor, List<Neuron> successor, List<Double> successorWeights, double alpha) {
+    public void adjustWeights(List<Input> predecessor, double alpha , List<Neuron> successor, List<Double> successorWeights) {
         calcDelta(successor, successorWeights);
         calcWeight(predecessor, alpha);
     }
@@ -80,5 +81,9 @@ public class Neuron implements Input{
 
     public double getDelta() {
         return mDelta;
+    }
+
+    public double getWeight(int index) {
+        return mWeights.get(index);
     }
 }
