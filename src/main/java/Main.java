@@ -1,4 +1,5 @@
 import entities.Perzeptron;
+import gui.GraphFrame;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,13 +15,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        einlesenVorlesungsbeispiele(new File("data.txt"));
+        GraphFrame frame = new GraphFrame("Neuronales Netz");
 
-        Perzeptron perzeptron = new Perzeptron(x, y, new int[]{3,2});
-
-        perzeptron.exercise(0.1, 1000);
-
-        perzeptron.evaluate();
+//        einlesenVorlesungsbeispiele(new File("data_2.txt"));
+//
+//        Perzeptron perzeptron = new Perzeptron(x, y, new int[]{10});
+//
+//        perzeptron.exercise(0.1, 100000);
+//
+//        perzeptron.evaluate();
     }
 
     public static void einlesenVorlesungsbeispiele(File file) {
