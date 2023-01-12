@@ -1,9 +1,7 @@
 package entities;
 
-import entities.input.Input;
 import entities.layer.HiddenLayer;
 import entities.layer.InputLayer;
-import entities.layer.Layer;
 import entities.layer.OutputLayer;
 
 import java.util.ArrayList;
@@ -59,8 +57,12 @@ public class Perzeptron {
                 mInputLayer.forward(mTraits[mOrder[j]]);
                 mOutputLayer.backward(mYValues[mOrder[j]]);
             }
-            System.out.println("Epoche: " + i + " Fehler: " + mOutputLayer.getDeltaOut());
+            if(i%4 == 0) {
+                System.out.printf("Epoche: %d%-10s%10f%n%n", i,"Delta: ", mOutputLayer.getDelta());
+            }
         }
+
+
     }
 
     public void chooseRandomOrder() {
@@ -75,12 +77,22 @@ public class Perzeptron {
 
     public void evaluate() {
         double[] x = new double[2];
-        for(int z=100;z>=0;z=z-1) {
-            for(int s=0;s<=100;s=s+1) {
-                x[0] = (double)(s/100.);
-                x[1] = (double)(z/100.);
+        int richtig = 0;
+        System.out.printf("%-6s%-6s%-5s%-10s%-10s%n%n", "X1", "X2", "Y", "Delta", "Out");
+        for (int i = 0; i < mTraits.length; i++) {
+            mInputLayer.forward(mTraits[i]);
+            if(mOutputLayer.aktivierungsFunktionSchwellwert() == mYValues[i] ) richtig++;
+            System.out.printf("%-6.2f%-6.2f%-5d%-10f%-10f%b%n%n", mTraits[i][0], mTraits[i][1], mYValues[i], mOutputLayer.getDelta(), mOutputLayer.getOut(), mOutputLayer.aktivierungsFunktionSchwellwert() == mYValues[i]);
+        }
+
+        System.out.printf("Richtig: %d von %d%n%n", richtig, mYValues.length);
+
+        for(int x2=100;x2>=0;x2--) {
+            for(int x1=0;x1<=100;x1++) {
+                x[0] = (double)(x1/100.);
+                x[1] = (double)(x2/100.);
                 mInputLayer.forward(x);
-                //if(z==90 && s==20)
+
                 System.out.print(mOutputLayer.aktivierungsFunktionSchwellwert());
             }
             System.out.println();

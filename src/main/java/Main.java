@@ -14,11 +14,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        einlesenVorlesungsbeispiele(new File("data_1.txt"));
+        einlesenVorlesungsbeispiele(new File("data.txt"));
 
-        Perzeptron perzeptron = new Perzeptron(x, y, new int[]{2});
+        Perzeptron perzeptron = new Perzeptron(x, y, new int[]{3,2});
 
-        perzeptron.exercise(0.05, 200);
+        perzeptron.exercise(0.1, 1000);
 
         perzeptron.evaluate();
     }

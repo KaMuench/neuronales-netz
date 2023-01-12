@@ -31,8 +31,11 @@ public class OutputLayer extends Layer{
         mPreLayer.backward();
     }
 
-    public double getDeltaOut() {
+    public double getDelta() {
         return mData.get(0).getDelta();
+    }
+    public double getOut() {
+        return mData.get(0).getOut();
     }
 
     @Override
