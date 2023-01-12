@@ -1,4 +1,4 @@
-package entities;
+package entities.input;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,11 @@ public class Neuron extends Input {
     double mIn;
     double mDelta;
 
-    Neuron(int amountInputs) {
+    public Neuron(int amountInputs) {
         //Initialisierung der Gewichte
         mWeights = new ArrayList<>();
         double d = 0.;
+        //Add one more weight for the bias
         for (int i = 0; i < amountInputs; i++) {
             d = Math.random();
             if (Math.random() < 0.5) d *= -1.0;

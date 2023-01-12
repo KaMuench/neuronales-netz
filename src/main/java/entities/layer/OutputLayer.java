@@ -1,24 +1,38 @@
 package entities.layer;
 
-import entities.Input;
+import entities.input.Input;
+import entities.input.Neuron;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OutputLayer extends Layer{
 
-    private int mYValue;
+    public OutputLayer(Layer preLayer) {
+        mData = new ArrayList<>();
+        mData.add(new Neuron(preLayer.getDataWithBiasSize()));
+        mPreLayer = preLayer;
+    }
 
     @Override
     public void forward() {
         mData.forEach(n -> n.generateOut(mPreLayer.getDataWithBias()));
-        mSuLayer.forward();
     }
 
     @Override
     public void backward() {
+
+    }
+
+    public void backward(int y) {
         for (int i = 0; i < mData.size(); i++) {
-            mData.get(i).adjustWeights(mPreLayer.getDataWithBias(), mAlpha, mYValue);
+            mData.get(i).adjustWeights(mPreLayer.getDataWithBias(), mAlpha, y);
         }
+        mPreLayer.backward();
+    }
+
+    public double getDeltaOut() {
+        return mData.get(0).getDelta();
     }
 
     @Override
@@ -26,7 +40,13 @@ public class OutputLayer extends Layer{
         return null;
     }
 
-    public void setYValue(int y) {
-        this.mYValue = y;
+    @Override
+    public int getDataWithBiasSize() {
+        return 0;
+    }
+
+    public int aktivierungsFunktionSchwellwert() {
+        if(mData.get(0).getOut()<0.5)return 0;
+        else   return 1;
     }
 }

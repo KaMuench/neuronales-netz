@@ -1,4 +1,4 @@
-package entities;
+package entities.input;
 
 public class Input{
     private double mValue = 1;

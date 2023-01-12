@@ -1,13 +1,22 @@
 package entities.layer;
 
-import entities.Input;
+import entities.input.Input;
+import entities.input.Neuron;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HiddenLayer extends Layer{
 
-    private Input mBias;
+    private Input mBias = new Input();
+
+    public HiddenLayer(int amountNeurons, Layer preLayer) {
+        mData = new ArrayList<>();
+        for (int i = 0; i < amountNeurons; i++) {
+            mData.add(new Neuron(preLayer.getDataWithBiasSize()));
+        }
+        mPreLayer = preLayer;
+    }
 
 
     @Override
@@ -21,13 +30,19 @@ public class HiddenLayer extends Layer{
         for (int i = 0; i < mData.size(); i++) {
             mData.get(i).adjustWeights(mPreLayer.getDataWithBias(), mAlpha, mSuLayer.getData(), mSuLayer.getWeights(i));
         }
-        mSuLayer.backward();
+        mPreLayer.backward();
     }
 
     @Override
     public List<Input> getDataWithBias() {
-        List<Input> data = new ArrayList<>(mData);
+        List<Input> data = new ArrayList<>();
         data.add(mBias);
+        data.addAll(mData);
         return data;
+    }
+
+    @Override
+    public int getDataWithBiasSize() {
+        return mData.size() + 1;
     }
 }
