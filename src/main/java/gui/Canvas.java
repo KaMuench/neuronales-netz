@@ -5,12 +5,12 @@ import java.awt.*;
 
 public class Canvas extends JPanel {
 
-    private int[][] mXValues;
+    private int[][] mXValues = new int[0][0];
 
-    private int[] mYValues;
+    private int[] mYValues = new int[0];
 
-    private Point[] mPointsTrue;
-    private Point[] mPointsFalse;
+    private Point[] mPointsTrue = new Point[0];
+    private Point[] mPointsFalse = new Point[0];
 
     private int mSkalierung;
 
