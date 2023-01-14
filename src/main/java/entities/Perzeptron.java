@@ -3,6 +3,7 @@ package entities;
 import entities.layer.HiddenLayer;
 import entities.layer.InputLayer;
 import entities.layer.OutputLayer;
+import gui.IterationListener;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;
@@ -12,6 +13,9 @@ public class Perzeptron {
     InputLayer mInputLayer;
     OutputLayer mOutputLayer;
     ArrayList<HiddenLayer> mLayer;
+
+    IterationListener mListener;
+
     double[][] mTraits;
     int[] mYValues;
     int[] mOrder;
@@ -20,7 +24,9 @@ public class Perzeptron {
         mTraits = traits;
         mYValues = y;
         mOrder = new int[traits.length];
+
         IntStream.range(0, traits.length).forEach(i -> mOrder[i] = i);
+
 
         ArrayList<HiddenLayer> layer = new ArrayList<>();
         //Add Input Layer which is actually the first hidden layer itself
@@ -60,9 +66,8 @@ public class Perzeptron {
             if(i%4 == 0) {
                 System.out.printf("Epoche: %d%-10s%10f%n%n", i,"Delta: ", mOutputLayer.getDelta());
             }
+            if(i%50 == 0) mListener.iterationFinished(i);
         }
-
-
     }
 
     public void chooseRandomOrder() {
@@ -99,4 +104,35 @@ public class Perzeptron {
         }
     }
 
+    public void setIteratorListener(IterationListener iteratorListener) {
+        mListener = iteratorListener;
+    }
+
+    public InputLayer getInputLayer() {
+        return mInputLayer;
+    }
+
+    public OutputLayer getOutputLayer() {
+        return mOutputLayer;
+    }
+
+    public ArrayList<HiddenLayer> getLayer() {
+        return mLayer;
+    }
+
+    public IterationListener getListener() {
+        return mListener;
+    }
+
+    public double[][] getTraits() {
+        return mTraits;
+    }
+
+    public int[] getYValues() {
+        return mYValues;
+    }
+
+    public int[] getOrder() {
+        return mOrder;
+    }
 }
