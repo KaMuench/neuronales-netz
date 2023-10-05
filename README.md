@@ -1,6 +1,6 @@
 # neuronales-netz (IntellijIDEA Project)
 
-![Neuronales Netz 2023-10-05 10-35-41](https://github.com/KaMuench/neuronales-netz/assets/104307796/2f240245-d6a0-4662-a31d-d70fc6678931)  
+<img src="https://github.com/KaMuench/neuronales-netz/assets/104307796/2f240245-d6a0-4662-a31d-d70fc6678931" alt="sudoku image" width="300">
 
 Thist was a project for the AI module at my university.  
 
@@ -28,11 +28,12 @@ To follow the training there is a simple GUI window. There the coordinates of th
 The background is divided into 100 * 100 coordinate points. Every cycle the neural network is feed with all these background coordinates to predict a class. The background coordinates are then coloured according to the outcome, either light blue or orange.  
 The better the network can predict the right class, the more the background color around the data coordinates matches the color of these data points.  
 
-As seen belowe the background color changes over time until it matche the data coordinates.
-![Neuronales Netz 2023-10-05 09-25-44 - Trim](https://github.com/KaMuench/neuronales-netz/assets/104307796/444d7e47-60f9-4169-9bb8-0d830206f029)  
+As seen belowe the background color changes over time until it matches the data coordinates.  
+
+<img src="https://github.com/KaMuench/neuronales-netz/assets/104307796/444d7e47-60f9-4169-9bb8-0d830206f029" alt="sudoku image" width="300"></img>   
 [data_kurve.txt](https://github.com/KaMuench/neuronales-netz/blob/master/src/main/resources/data_kurve.txt)  
 
-![Neuronales Netz 2023-10-05 10-35-41](https://github.com/KaMuench/neuronales-netz/assets/104307796/2f240245-d6a0-4662-a31d-d70fc6678931)  
+<img src="https://github.com/KaMuench/neuronales-netz/assets/104307796/2f240245-d6a0-4662-a31d-d70fc6678931" alt="sudoku image" width="300"/></img>    
 [data_kreis.txt](https://github.com/KaMuench/neuronales-netz/blob/master/src/main/resources/data_kreis.txt)
 
 
