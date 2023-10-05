@@ -1,8 +1,7 @@
 # neuronales-netz (IntellijIDEA Project)
+Thist was a project for the AI module at my university.   
 
-<img src="https://github.com/KaMuench/neuronales-netz/assets/104307796/2f240245-d6a0-4662-a31d-d70fc6678931" alt="sudoku image" width="300">
-
-Thist was a project for the AI module at my university.  
+<img src="https://github.com/KaMuench/neuronales-netz/assets/104307796/2f240245-d6a0-4662-a31d-d70fc6678931" alt="sudoku image" width="300"> 
 
 The main goal was to build a net of perceptrons. This network can have multiple layers with 2 layers at least. Each layer takes input values processes them and passes them on to the succeeding layer, until the last layer is reached. In the last layer the 
 resulting values are varified against the so called class value. After this verification each parameters of every perecptron is adjusted using a calculated delta. This process is called [Backpropagation](https://de.wikipedia.org/wiki/Backpropagation).  
