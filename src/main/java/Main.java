@@ -1,5 +1,4 @@
 import entities.Perzeptron;
-import gui.Canvas;
 import gui.GraphFrame;
 import gui.IterationListener;
 
@@ -16,38 +15,43 @@ public class Main {
     static int[] y; //Klasse
     static int n;        //Dimension, d.h. Anzahl der Merkmale bzw. Eingaenge in das Perzeptron without BIAS
     static int m;        //Anzahl der Muster bzw. Trainingsbeispiele bzw. Datens�tze
+    static Perzeptron perzeptron;
+    static GraphFrame frame;
+
+
+    static IterationListener listener = (int iteration) -> {
+        double[] x = new double[2];
+        ArrayList<Point> pointsTrue = new ArrayList<>();
+        ArrayList<Point> pointsFalse = new ArrayList<>();
+        for (int x2 = 100; x2 >= 0; x2--) {
+            for (int x1 = 0; x1 <= 100; x1++) {
+                x[0] = (double) (x1 / 100.);
+                x[1] = (double) (x2 / 100.);
+                perzeptron.getInputLayer().forward(x);
+
+                if(perzeptron.getOutputLayer().aktivierungsFunktionSchwellwert() == 1) pointsTrue.add(new Point(x1, 100 - x2));
+                else pointsFalse.add(new Point(x1, 100 - x2));
+            }
+        }
+        frame.setIteration(iteration);
+        frame.setOutPut(pointsTrue.toArray(Point[]::new), pointsFalse.toArray(Point[]::new));
+        frame.repaint();
+    };
+
 
     public static void main(String[] args) {
-        GraphFrame frame = new GraphFrame("Neuronales Netz");
+        einlesenVorlesungsbeispiele(new File("data_kurve.txt"));
 
-        einlesenVorlesungsbeispiele(new File("data_2.txt"));
-
-        Perzeptron perzeptron = new Perzeptron(x, y, new int[]{10});
-
+        frame = new GraphFrame("Neuronales Netz");
         frame.setValues(xValuesForDisplay, y, 100);
 
 
-        IterationListener listener = (int iteration) -> {
-            double[] x = new double[2];
-            ArrayList<Point> pointsTrue = new ArrayList<>();
-            ArrayList<Point> pointsFalse = new ArrayList<>();
-
-            for (int x2 = 100; x2 >= 0; x2--) {
-                for (int x1 = 0; x1 <= 100; x1++) {
-                    x[0] = (double) (x1 / 100.);
-                    x[1] = (double) (x2 / 100.);
-                    perzeptron.getInputLayer().forward(x);
-
-                    if(perzeptron.getOutputLayer().aktivierungsFunktionSchwellwert() == 1) pointsTrue.add(new Point(x1, 100 - x2));
-                    else pointsFalse.add(new Point(x1, 100 - x2));
-                }
-            }
-            frame.setIteration(iteration);
-            frame.setOutPut(pointsTrue.toArray(Point[]::new), pointsFalse.toArray(Point[]::new));
-            frame.repaint();
-        };
-
+        //Starten des Trainings
+        // Perzeptron( x: Merkmale, y: Klasse zum Testen, int[]: anzahl Neuronen pro Layer)
+        perzeptron =  new Perzeptron(x, y, new int[]{5,2});
         perzeptron.setIteratorListener(listener);
+
+        //exercise(double: Alpha, int: Iterationen (Epochen))
         perzeptron.exercise(0.1, 100_000);
 
         perzeptron.evaluate();
