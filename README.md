@@ -4,11 +4,11 @@ Thist was a project for the AI module at my university.
 <img src="https://github.com/KaMuench/neuronales-netz/assets/104307796/2f240245-d6a0-4662-a31d-d70fc6678931" alt="sudoku image" width="300"> 
 
 The main goal was to build a net of perceptrons. This network can have multiple layers with 2 layers at least. Each layer takes input values processes them and passes them on to the succeeding layer, until the last layer is reached. In the last layer the 
-resulting values are varified against the so called class value. After this verification each parameters of every perecptron is adjusted using a calculated delta. This process is called [Backpropagation](https://de.wikipedia.org/wiki/Backpropagation).  
+resulting values are varified against the so called class value. After this verification each parameters of every perecptron is adjusted using a calculated delta. This process is called [Backpropagation - Wikipedia](https://de.wikipedia.org/wiki/Backpropagation).  
 
 This whole process is repeated, with the goal to reduce the delta of the final layer until the predictions of the neural network are as close as possible to the actual class values.
 
-More detailed information to the functionality of neural networks [here](https://databasecamp.de/ki/backpropagation-grundlagen#:~:text=Backpropagation%20ist%20eine%20Art%20%C3%BCberwachter,Reinforcement%20Learning%20verwendet%20werden%20k%C3%B6nnen.)  
+More detailed information to the functionality of neural networks can be found for exmaple at [https://databasecamp.de/ki/backpropagation-grundlagen](https://databasecamp.de/ki/backpropagation-grundlagen#:~:text=Backpropagation%20ist%20eine%20Art%20%C3%BCberwachter,Reinforcement%20Learning%20verwendet%20werden%20k%C3%B6nnen).
 
 
 ## Test Data
@@ -22,7 +22,7 @@ Each data file contains several coordinates and a class value for each of this c
 When starting the program the neural network is feed with this coordinates. Then the neural network is trained to predict the right class for the input coordinates. 
 
 ## Review of process state
-To follow the training there is a simple GUI window. There the coordinates of the test data are displayed coloured according to there class value. (0=blue, red=1)
+To follow the training there is a simple GUI window. There the coordinates of the test data are displayed coloured according to their class value. (0=blue, red=1)
 
 The background is divided into 100 * 100 coordinate points. Every cycle the neural network is feed with all these background coordinates to predict a class. The background coordinates are then coloured according to the outcome, either light blue or orange.  
 The better the network can predict the right class, the more the background color around the data coordinates matches the color of these data points.  
